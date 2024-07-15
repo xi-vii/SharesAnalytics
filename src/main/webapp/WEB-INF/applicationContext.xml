@@ -54,12 +54,7 @@
     </bean>
 
     <!--Для аннотации Transactional-->
-    <!--При возникновении ошибки
-     BeanNotOfRequiredTypeException: Bean named X is expected to be of type X but was actually
-     of type 'com.sun.proxy.$Proxy
-     Добавляем строчку proxy-target-class="true"
-     -->
-    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"  />
+    <tx:annotation-driven transaction-manager="transactionManager" />
 
 
 </beans>

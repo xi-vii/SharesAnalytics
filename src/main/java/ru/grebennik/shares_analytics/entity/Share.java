@@ -16,13 +16,13 @@ public class Share {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "type")
+    @Column(name = "share_type")
     private String type;
 
-    @Column(name = "years")
+    @Column(name = "years_pay_dividend")
     private int yearsPayDiv;
 
-    @Column(name = "average")
+    @Column(name = "all_time_average_div_growth")
     private double averageDivGrowth;
 
     public Share() {

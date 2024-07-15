@@ -13,7 +13,7 @@
         <th>Ticker</th>
         <th>Type</th>
         <th>Pay dividend, years</th>
-        <th>Avg dividend growth, %</th>
+        <th>All-time avg dividend growth, %</th>
     </tr>
 
     <!--Тело-->

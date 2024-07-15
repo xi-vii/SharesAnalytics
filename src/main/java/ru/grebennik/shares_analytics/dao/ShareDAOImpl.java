@@ -19,7 +19,6 @@ public class ShareDAOImpl implements ShareDAO {
     private SessionFactory sessionFactory;
 
     @Override
-    @Transactional
     public List<Share> getAllShares() {
 
         // Получаем сессию
