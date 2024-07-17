@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.grebennik.shares_analytics.entity.Share;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
@@ -34,5 +36,36 @@ public class ShareDAOImpl implements ShareDAO {
         List<Share> allShares = query.getResultList();  // - список акций
 
         return allShares;
+    }
+
+    @Override
+    public void saveShare(Share share) {
+
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(share);
+    }
+
+    @Override
+    public void deleteShare(String ticker) {
+
+        Session session = sessionFactory.getCurrentSession();
+
+        // Удаляем из БД работника через Criteria API
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaDelete<Share> criteriaDelete = builder.createCriteriaDelete(Share.class);
+        Root<Share> root = criteriaDelete.from(Share.class);
+
+        criteriaDelete.where(builder.equal(root.get("ticker"), ticker));
+
+        session.createQuery(criteriaDelete).executeUpdate();
+    }
+
+    @Override
+    public Share getShareByTicker(String ticker) {
+
+        Session session = sessionFactory.getCurrentSession();
+        Share share = session.get(Share.class, ticker);
+
+        return share;
     }
 }

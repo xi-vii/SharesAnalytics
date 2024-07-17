@@ -19,4 +19,22 @@ public class ShareServiceImpl implements ShareService {
     public List<Share> getAllShares() {
         return shareDAO.getAllShares();
     }
+
+    @Override
+    @Transactional
+    public void saveShare(Share share) {
+        shareDAO.saveShare(share);
+    }
+
+    @Override
+    @Transactional
+    public void deleteShare(String ticker) {
+        shareDAO.deleteShare(ticker);
+    }
+
+    @Override
+    @Transactional
+    public Share getShareByTicker(String ticker) {
+        return shareDAO.getShareByTicker(ticker);
+    }
 }
