@@ -35,9 +35,9 @@
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
         <property name="driverClass" value="org.postgresql.Driver" />
-        <property name="jdbcUrl" value="jdbc:postgresql:postgres" />
-        <property name="user" value="postgres" />
-        <property name="password" value="1" />
+        <property name="jdbcUrl" value="jdbc:postgresql://localhost:5434/shares_db" /> <!-- "jdbc:postgresql:postgres" -->
+        <property name="user" value="root" /> <!-- "postgres" -->
+        <property name="password" value="root" /> <!-- "1" -->
     </bean>
 
     <!--Бин для создания сессий-->
