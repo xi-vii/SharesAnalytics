@@ -108,6 +108,7 @@
 
     <pluginManagement>
       <plugins>
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
@@ -118,6 +119,26 @@
             <failOnMissingWebXml>false</failOnMissingWebXml>
           </configuration>
         </plugin>
+
+        <!-- Плагин для создания image по dockerfile (через команду mvn package docker:build) -->
+        <plugin>
+          <groupId>io.fabric8</groupId>
+          <artifactId>docker-maven-plugin</artifactId>
+          <version>0.39.0</version>
+          <configuration>
+            <dockerHost>tcp://localhost:2375</dockerHost>
+            <verbose>true</verbose>
+            <images>
+              <image>
+                <name>shareanalytics</name> <!-- ${project.artifactId} -->
+                <build>
+                  <dockerFileDir>${project.basedir}</dockerFileDir>
+                </build>
+              </image>
+            </images>
+          </configuration>
+        </plugin>
+
       </plugins>
     </pluginManagement>
 
