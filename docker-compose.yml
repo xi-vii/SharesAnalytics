@@ -18,16 +18,16 @@ services:
     ports:
       - "5434:5432"
 
-#  app:
-#    restart: always
-#    build: .
-#    ports:
-#      - "8090:8080"
-#    depends_on:
-#      - db_shares
-#    environment:
-#      SERVER_PORT: 8080
-#      SPRING_DATASOURCE_URL: "jdbc:postgresql://db_shares/shares_db"
+  app:
+    restart: always
+    build: .
+    ports:
+      - "8090:8080"
+    depends_on:
+      - db_shares
+    environment:
+      SERVER_PORT: 8080
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://db_shares/shares_db"
 
 
 
