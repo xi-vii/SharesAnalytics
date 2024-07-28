@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.grebennik.shares_analytics.dao.ShareDAO;
 import ru.grebennik.shares_analytics.entity.Share;
+import ru.grebennik.shares_analytics.entity.ShareGrowthHistory;
 
 import java.util.List;
 
@@ -36,5 +37,11 @@ public class ShareServiceImpl implements ShareService {
     @Transactional
     public Share getShareByTicker(String ticker) {
         return shareDAO.getShareByTicker(ticker);
+    }
+
+    @Override
+    @Transactional
+    public ShareGrowthHistory getGrowthHistoryByTicker(String ticker) {
+        return shareDAO.getGrowthHistoryByTicker(ticker);
     }
 }

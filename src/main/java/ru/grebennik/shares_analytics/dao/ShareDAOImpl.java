@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.grebennik.shares_analytics.entity.Share;
+import ru.grebennik.shares_analytics.entity.ShareGrowthHistory;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
@@ -67,5 +68,15 @@ public class ShareDAOImpl implements ShareDAO {
         Share share = session.get(Share.class, ticker);
 
         return share;
+    }
+
+    @Override
+    public ShareGrowthHistory getGrowthHistoryByTicker(String ticker) {
+
+        Session session = sessionFactory.getCurrentSession();
+        System.out.println(ticker);
+        ShareGrowthHistory growthHistory = session.get(ShareGrowthHistory.class, ticker);
+
+        return growthHistory;
     }
 }

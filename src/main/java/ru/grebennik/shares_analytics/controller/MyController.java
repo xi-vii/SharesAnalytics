@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.grebennik.shares_analytics.aspect.LoggingAspect;
 import ru.grebennik.shares_analytics.dao.ShareDAO;
 import ru.grebennik.shares_analytics.entity.Share;
+import ru.grebennik.shares_analytics.entity.ShareGrowthHistory;
 import ru.grebennik.shares_analytics.service.ShareService;
 
 import java.util.List;
@@ -27,6 +28,10 @@ public class MyController {
 
         // Получаем список всех акций
         List<Share> shares = shareService.getAllShares();
+
+        //todo Запрос не отрабатывает!
+//        System.out.println(shareService.getGrowthHistoryByTicker("KAZT"));
+//        System.out.println();
 
         // Добавляем аттрибут в модель
         model.addAttribute("allShares", shares);
@@ -66,5 +71,19 @@ public class MyController {
         model.addAttribute("share", share);
 
         return "share-info";
+    }
+
+    @RequestMapping("/exploreShare")
+    public String exploreShare(@RequestParam("shareTicker") String ticker, Model model) {
+
+        ShareGrowthHistory growthHistory =  shareService.getGrowthHistoryByTicker(ticker);
+        model.addAttribute("growthHistory", growthHistory);
+
+        return "share-info-detailed";
+    }
+
+    @RequestMapping("/backToHomePage")
+    public String backToHomePage() {
+        return "redirect:/";
     }
 }

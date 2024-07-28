@@ -6,15 +6,15 @@
 <br>
 
 <!--Создаём таблицу-->
-<table>
+<table border="1">
     <!--Шапка-->
     <tr>
-        <th>Name</th>
-        <th>Ticker</th>
-        <th>Type</th>
-        <th>Pay dividend, years</th>
-        <th>All-time avg dividend growth, %</th>
-        <th>Operations</th>
+        <th bgcolor="yellow">Name</th>
+        <th bgcolor="yellow">Ticker</th>
+        <th bgcolor="yellow">Type</th>
+        <th bgcolor="yellow">Pay dividend, years</th>
+        <th bgcolor="yellow">All-time avg dividend growth, %</th>
+        <th bgcolor="yellow">Operations</th>
     </tr>
 
     <!--
@@ -35,15 +35,20 @@
             <c:param name="shareTicker" value="${share.ticker}"/>
         </c:url>
 
+        <c:url var="exploreButton" value="/exploreShare">
+            <c:param name="shareTicker" value="${share.ticker}"/>
+        </c:url>
+
         <tr>
             <td>${share.name}</td>
             <td>${share.ticker}</td>
             <td>${share.type}</td>
-            <td>${share.yearsPayDiv}</td>
-            <td>${share.averageDivGrowth}</td>
+            <td align="center">${share.yearsPayDiv}</td>
+            <td align="center">${share.averageDivGrowth}</td>
             <td>
-                <input type="button" value="Delete" onclick="window.location.href = '${deleteButton}'"/>
+                <input type="button" value="Explore" onclick="window.location.href = '${exploreButton}'"/>
                 <input type="button" value="Update" onclick="window.location.href = '${updateButton}'"/>
+                <input type="button" value="Delete" onclick="window.location.href = '${deleteButton}'"/>
             </td>
         </tr>
     </c:forEach>

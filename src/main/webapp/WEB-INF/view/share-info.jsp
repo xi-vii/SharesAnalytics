@@ -23,7 +23,10 @@
     All-time avg dividend growth, % <form:input path="averageDivGrowth"/>
     <br><br><br>
     <input type="submit" value="Done!">
+    <input type="button" value="Back"
+           onclick="window.location.href = 'backToHomePage'"/>
 </form:form>
+
 
 </body>
 </html>

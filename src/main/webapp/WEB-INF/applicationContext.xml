@@ -35,10 +35,13 @@
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
         <property name="driverClass" value="org.postgresql.Driver" />
-        <!-- host.docker.internal (см.ниже)- прописывается вместо localhost, когда приложение развёрнуто через контейнер Докера -->
-        <property name="jdbcUrl" value="jdbc:postgresql://host.docker.internal:5434/shares_db" /> <!-- "jdbc:postgresql:postgres" -->
-        <property name="user" value="root" /> <!-- "postgres" -->
-        <property name="password" value="root" /> <!-- "1" -->
+        <!--
+        host.docker.internal (см.ниже)- прописывается вместо localhost, когда приложение развёрнуто через контейнер Докера
+        "jdbc:postgresql://host.docker.internal:5434/shares_db"
+        -->
+        <property name="jdbcUrl" value="jdbc:postgresql:postgres" /> <!-- "jdbc:postgresql:postgres" -->
+        <property name="user" value="postgres" /> <!-- "postgres" "root"-->
+        <property name="password" value="1" /> <!-- "1" "root"-->
     </bean>
 
     <!--Бин для создания сессий-->
