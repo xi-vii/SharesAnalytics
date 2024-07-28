@@ -12,19 +12,23 @@
 <br><br>
 
 <form:form action="saveShare" modelAttribute="share">
-    Ticker <form:input path="ticker"/>
+    Ticker <form:input path="share.ticker"/>
     <br><br>
-    Company name <form:input path="name"/>
+    Company name <form:input path="share.name"/>
     <br><br>
-    Type of share <form:input path="type"/>
+    Type of share <form:input path="share.type"/>
     <br><br>
-    Pay dividend, years <form:input path="yearsPayDiv"/>
+    Pay dividend, years <form:input path="share.yearsPayDiv"/>
     <br><br>
-    All-time avg dividend growth, % <form:input path="averageDivGrowth"/>
+    All-time avg dividend growth, % <form:input path="share.averageDivGrowth"/>
+    <br><br>
+    01.02.2000-01.02.2010 growth, % <form:input path="growthHistory.growthFrom00To10"/>
+    <br><br>
+    01.02.2010-01.02.2020 growth, % <form:input path="growthHistory.growthFrom10To20"/>
     <br><br><br>
-    <input type="submit" value="Done!">
     <input type="button" value="Back"
            onclick="window.location.href = 'backToHomePage'"/>
+    <input type="submit" value="Done!">
 </form:form>
 
 

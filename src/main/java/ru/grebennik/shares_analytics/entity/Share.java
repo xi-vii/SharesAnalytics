@@ -22,6 +22,7 @@ public class Share {
     @Column(name = "all_time_average_div_growth")
     private double averageDivGrowth;
 
+
     public Share() {
     }
 

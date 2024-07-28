@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.grebennik.shares_analytics.dao.ShareDAO;
 import ru.grebennik.shares_analytics.entity.Share;
 import ru.grebennik.shares_analytics.entity.ShareGrowthHistory;
+import ru.grebennik.shares_analytics.temp.ShareInfoForm;
 
 import java.util.List;
 
@@ -23,8 +24,8 @@ public class ShareServiceImpl implements ShareService {
 
     @Override
     @Transactional
-    public void saveShare(Share share) {
-        shareDAO.saveShare(share);
+    public void saveShare(Share share, ShareGrowthHistory growthHistory) {
+        shareDAO.saveShare(share, growthHistory);
     }
 
     @Override
@@ -35,7 +36,7 @@ public class ShareServiceImpl implements ShareService {
 
     @Override
     @Transactional
-    public Share getShareByTicker(String ticker) {
+    public ShareInfoForm getShareByTicker(String ticker) {
         return shareDAO.getShareByTicker(ticker);
     }
 

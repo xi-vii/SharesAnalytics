@@ -13,12 +13,10 @@ public class ShareGrowthHistory {
     @Column(name = "name")
     private String name;
 
-    //todo Заменить в таблице название столбца на нормальное
-    @Column(name = "tst")
+    @Column(name = "growth_from_00_till_10")
     private double growthFrom00To10;
 
-    //todo Заменить в таблице название столбца на нормальное
-    @Column(name = "tst_tst")
+    @Column(name = "growth_from_10_till_20")
     private double growthFrom10To20;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -26,6 +24,13 @@ public class ShareGrowthHistory {
     @JoinColumn(name = "ticker")    // Без этой аннотации почему-то выдавало ошибку, что столбец не существет
     private Share share;
 
+    public Share getShare() {
+        return share;
+    }
+
+    public void setShare(Share share) {
+        this.share = share;
+    }
 
     public ShareGrowthHistory() {
     }

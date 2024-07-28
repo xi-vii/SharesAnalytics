@@ -14,6 +14,7 @@ import ru.grebennik.shares_analytics.dao.ShareDAO;
 import ru.grebennik.shares_analytics.entity.Share;
 import ru.grebennik.shares_analytics.entity.ShareGrowthHistory;
 import ru.grebennik.shares_analytics.service.ShareService;
+import ru.grebennik.shares_analytics.temp.ShareInfoForm;
 
 import java.util.List;
 
@@ -29,10 +30,6 @@ public class MyController {
         // Получаем список всех акций
         List<Share> shares = shareService.getAllShares();
 
-        //todo Запрос не отрабатывает!
-//        System.out.println(shareService.getGrowthHistoryByTicker("KAZT"));
-//        System.out.println();
-
         // Добавляем аттрибут в модель
         model.addAttribute("allShares", shares);
 
@@ -42,16 +39,26 @@ public class MyController {
     @RequestMapping("/addNewShare")
     public String addShare(Model model) {
 
-        Share share = new Share();
+        ShareInfoForm share = new ShareInfoForm();
         model.addAttribute("share", share); // добавляем пустой объект в качестве атрибута модели
 
         return "share-info";
     }
 
     @RequestMapping("/saveShare")
-    public String saveShare(@ModelAttribute ("share") Share share) {
+    public String saveShare(@ModelAttribute ("share") ShareInfoForm shareInfoForm) {
 
-        shareService.saveShare(share);
+        // Получаем из формы тикер (т.к. он вводится 1 раз) и переопределяем его у экземпляра класса ShareGrowthHistory
+        ShareGrowthHistory growthHistory = shareInfoForm.getGrowthHistory();
+        Share share = shareInfoForm.getShare();
+        String ticker = share.getTicker();
+        String name = share.getName();
+
+        growthHistory.setTicker(ticker);
+        growthHistory.setName(name);
+        growthHistory.setShare(share);
+
+        shareService.saveShare(share, growthHistory);
 
         return "redirect:/";
     }
@@ -67,7 +74,7 @@ public class MyController {
     @RequestMapping("/updateShare")
     public String updateShare(@RequestParam("shareTicker") String ticker, Model model) {
 
-        Share share = shareService.getShareByTicker(ticker);
+        ShareInfoForm share = shareService.getShareByTicker(ticker);
         model.addAttribute("share", share);
 
         return "share-info";
