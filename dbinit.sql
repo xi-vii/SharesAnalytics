@@ -14,7 +14,9 @@ CREATE TABLE history_growth_data (
     name CHARACTER(50) NOT NULL,
     growth_from_00_till_10 DOUBLE PRECISION default 0.0,
     growth_from_10_till_20 DOUBLE PRECISION default 0.0,
-    FOREIGN KEY (ticker) REFERENCES shares
+    FOREIGN KEY (ticker) REFERENCES shares (ticker)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 );
 
 INSERT INTO history_growth_data(ticker, name, growth_from_00_till_10, growth_from_10_till_20) VALUES

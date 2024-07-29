@@ -21,7 +21,7 @@
 
     <mvc:annotation-driven/>
 
-    <!--Прописываем, чтобы Spring клооектно отрабатывал классы с аннотацией @Aspect-->
+    <!--Прописываем, чтобы Spring корректно отрабатывал классы с аннотацией @Aspect-->
     <aop:aspectj-autoproxy/>
 
     <bean
@@ -39,9 +39,9 @@
         host.docker.internal (см.ниже)- прописывается вместо localhost, когда приложение развёрнуто через контейнер Докера
         "jdbc:postgresql://host.docker.internal:5434/shares_db"
         -->
-        <property name="jdbcUrl" value="jdbc:postgresql:postgres" /> <!-- "jdbc:postgresql:postgres" -->
-        <property name="user" value="postgres" /> <!-- "postgres" "root"-->
-        <property name="password" value="1" /> <!-- "1" "root"-->
+        <property name="jdbcUrl" value="jdbc:postgresql://host.docker.internal:5434/shares_db" /> <!-- "jdbc:postgresql:postgres" -->
+        <property name="user" value="root" /> <!-- "postgres" "root"-->
+        <property name="password" value="root" /> <!-- "1" "root"-->
     </bean>
 
     <!--Бин для создания сессий-->
